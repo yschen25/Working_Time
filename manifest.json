@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Off Work Time",
+  "version": "1",
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "css": [
+        "index.css"
+      ],
+      "js": [
+        "index.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
