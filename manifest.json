@@ -11,6 +11,11 @@
     ],
     "persistent": false
   },
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ],
   "content_scripts": [
     {
       "css": [
