@@ -1,14 +1,16 @@
 $(document).ready(function () {
 
     $.ajax({
-        url: 'https://stackoverflow.com/',
+        url: 'http://hr.pchomepay.com.tw/',
         type: 'GET',
         success: function (response) {
+            console.log('type', typeof response);
             console.log('success', response);
         },
         complete: function (response) {
-            console.log('complete', response);
+            // console.log('complete', response);
         },
+
         error: function (response) {
 
             console.log('error', response);
