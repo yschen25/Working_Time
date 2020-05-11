@@ -1,6 +1,4 @@
-const log = chrome.extension.getBackgroundPage().console.log;
-
-function getAjax(callback) {
+function getData(callback) {
     $.ajax({
         url: 'http://hr.pchomepay.com.tw/',
         type: 'GET',
