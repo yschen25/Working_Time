@@ -9,6 +9,21 @@ $(document).ready(function () {
         let textSuccess = html.getElementsByClassName('text-success');
         let textDanger = html.getElementsByClassName('text-danger');
 
+        let today = date();
+
+        console.log('ff',localStorage.getItem(today + 'name'));
+
+        // 抓 localStorage
+        if (localStorage.getItem(today + 'fromTime') !== null && localStorage.getItem(today + 'toTime') !== null) {
+            document.getElementById("name").style.display = 'block';
+            document.getElementById("fromTimeWrapper").style.display = 'block';
+            document.getElementById("toTimeWrapper").style.display = 'block';
+            document.getElementById("name").innerHTML = localStorage.getItem(today + 'name');
+            document.getElementById("fromTime").innerHTML = localStorage.getItem(today + 'fromTime');
+            document.getElementById("toTime").innerHTML = localStorage.getItem(today + 'toTime');
+            return;
+        }
+
         // 未登入
         if (textSuccess.length === 0 || textDanger.length === 0) {
             document.getElementById("text").style.display = 'block';
@@ -20,6 +35,7 @@ $(document).ready(function () {
         let nameList = html.getElementsByClassName('text-primary')[0]['innerText'];
         let name = nameList.split(' ');
         document.getElementById("name").innerHTML = name[1];
+        localStorage.setItem(today + 'name', name[1]);
 
         let text = textSuccess.length !== 0 ? textSuccess[0]['innerText'] : textDanger[0]['innerText'];
 
@@ -37,13 +53,13 @@ $(document).ready(function () {
             return;
         }
 
-        calculateTime(text);
+        calculateTime(text, today);
 
     });
 });
 
 
-function calculateTime(text) {
+function calculateTime(text, today) {
 
     let result = '';
     let time = text.split(':');
@@ -88,9 +104,21 @@ function calculateTime(text) {
         result = '19:00';
     }
 
+    localStorage.setItem(today + 'fromTime', text);
+    localStorage.setItem(today + 'toTime', result);
+
     document.getElementById("fromTimeWrapper").style.display = 'block';
     document.getElementById("toTimeWrapper").style.display = 'block';
     document.getElementById("fromTime").innerHTML = text;
     document.getElementById("toTime").innerHTML = result;
 }
 
+// 今天時間
+function date() {
+    let today = new Date();
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+
+    return year + month + day;
+}
