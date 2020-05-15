@@ -1,4 +1,4 @@
-const log = chrome.extension.getBackgroundPage().console.log;
+// const log = chrome.extension.getBackgroundPage().console.log;
 
 $(document).ready(function () {
 
